@@ -1,46 +1,45 @@
 #include <stdio.h>
 
 
-int fib(int n)
+int fib_recursia(int n)
 {
-  if (n == 0) {
-    return 0;
-  }
-  else if (n == 1)
-    return 1;
-      else return fib(n - 1)+fib(n-2);
+    if (n == 0 || n == 1) {
+
+        return 1;
+    } else {
+
+        return fib_recursia(n - 2) + fib_recursia(n - 1);
+    }
 }
 
-int fib_iter(int a, int b, int c, int count)
+int fib_iter(int n) //цикл
 {
-  if (c == count) {
-    return a;
-  }
-  return fib_iter(a+b,a,c+1,count);
+    int i, mas[n];
+    mas[0] = mas[1] = 1;
+    for (i = 2; i <= n; i++) {
+        mas[i] = mas[i - 1] + mas[i - 2];
+    }
+
+    return mas[n];
 }
 
-int fib_it(int n)
+int main()
 {
-  return fib_iter(0, 1, 0, n);
-}
+    int n;
 
- int main()
-{
-  int n;
+  printf("Enter n = ");
+  scanf("%d", &n);
 
-	printf("Enter n = ");
-	scanf("%d", &n);
-
-	printf("Recursive Fib = %d\n", fib(n));
-	printf("Iterative Fib = %d\n", fib_it(n));
-	system("pause");
-	return 0;
+  printf("Recursive Fib = %d\n", fib_recursia(n));
+  printf("Iterative Fib = %d\n", fib_iter(n));
+  system("pause");
+  return 0;
 }
 
 
 /*
-� fib(6)
-� 	fib(5)+fib(4)
+  fib(6)
+  	fib(5)+fib(4)
  		fib(4)+fib(3)
   			fib(3)+fib(2)
   				fib(2)+fib(1)
